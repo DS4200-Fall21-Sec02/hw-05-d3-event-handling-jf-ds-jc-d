@@ -27,9 +27,7 @@ let rect = svg.append('rect')
   .attr('width', '20%')
   .attr('height', '20%')
   .attr('fill', '#a6cee3')
-  .call(cc)
-  .on('click', squareclicked)
-  .on('dbclick', dblclick) 
+  .on('click', squareclicked);
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -37,8 +35,7 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
-  .on('click', circleclicked)
-  .on('dbclick', dblclick);
+  .on('click', circleclicked);
 
 // enable random color of square based on circle click
 function circleclicked() {
@@ -56,12 +53,5 @@ function squareclicked() {
 
 }
 
-//change both of the colors
-function dblclick() {
-
-  circleclicked;
-  squareclicked;
-
-}
 
 
