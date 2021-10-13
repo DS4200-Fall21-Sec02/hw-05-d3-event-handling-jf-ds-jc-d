@@ -19,13 +19,17 @@ let svg = d3.select('#vis')
   .style('border', 'solid')
   .attr('viewBox', [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom].join(' '))
 
+
 // Add a square 
 let rect = svg.append('rect')
   .attr('x', '100')
   .attr('y', '200')
   .attr('width', '20%')
   .attr('height', '20%')
-  .attr('fill', '#a6cee3'); 
+  .attr('fill', '#a6cee3')
+  .call(cc)
+  .on('click', squareclicked)
+  .on('dbclick', dblclick) 
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -33,6 +37,31 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
+  .on('click', circleclicked)
+  .on('dbclick', dblclick);
 
+// enable random color of square based on circle click
+function circleclicked() {
+
+  let random = Math.floor(Math.random() * 10)
+  rect.attr('fill', d3.schemeCategory10[random]);
+
+}
+
+// enable random color of circle based on square click
+function squareclicked() {
+
+  let random = Math.floor(Math.random() * 10)
+  circle.attr('fill', d3.schemeCategory10[random]);
+
+}
+
+//change both of the colors
+function dblclick() {
+
+  circleclicked;
+  squareclicked;
+
+}
 
 
