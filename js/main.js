@@ -35,7 +35,8 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
-  .on('click', circleclicked);
+  .on('click', circleclicked)
+  .on('dblclick', circleddoubleclicked);
 
 // enable random color of square based on circle click
 function circleclicked() {
@@ -50,6 +51,16 @@ function squareclicked() {
 
   let random = Math.floor(Math.random() * 10)
   circle.attr('fill', d3.schemeCategory10[random]);
+
+}
+
+// enable random color of circle and square based on circle click
+function circleddoubleclicked() {
+
+  let random = Math.floor(Math.random() * 10)
+  let random1 = Math.floor(Math.random() * 11)
+  circle.attr('fill', d3.schemeCategory10[random]);
+  rect.attr('fill', d3.schemeCategory10[random1]);
 
 }
 
