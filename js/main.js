@@ -29,7 +29,11 @@ let rect = svg.append('rect')
   .attr('fill', '#a6cee3')
   .on('click', squareclicked)
   .on('mouseover', rectborderhover)
-  .on('mouseleave', rectbordernothover);
+  .on('mouseleave', rectbordernothover)
+  .call(d3.drag()
+         .on("drag", draggedrect));
+
+
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -40,7 +44,10 @@ let circle = svg.append('circle')
   .on('click', circleclicked)
   .on('dblclick', circleddoubleclicked)
   .on('mouseover', circleborderhover)
-  .on('mouseleave', circlebordernothover);
+  .on('mouseleave', circlebordernothover)
+  .call(d3.drag()
+         .on("drag", draggedcirc));
+ 
 
 // enable random color of square based on circle click
 function circleclicked() {
@@ -87,6 +94,18 @@ function rectborderhover(){
 function rectbordernothover(){
   rect.attr('stroke', circle.color)
 }
+
+// drag the circle -- only different from rect because of cy and cx instead of x and y and bring it forward
+function draggedcirc(event, d) {
+  d3.select(this).attr('cx', event.x).attr('cy', event.y).raise();
+}
+
+// drag the rect and bring it forward
+function draggedrect(event, d) {
+  d3.select(this).attr('x', event.x).attr('y', event.y).raise();
+}
+
+
 
 
 
