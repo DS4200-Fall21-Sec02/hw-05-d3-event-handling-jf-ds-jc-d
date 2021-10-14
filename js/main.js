@@ -41,8 +41,8 @@ let circle = svg.append('circle')
   .attr('cy', '250')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
-  .on('click', circleclicked)
   .on('dblclick', circleddoubleclicked)
+  .on('click', circleclicked)
   .on('mouseover', circleborderhover)
   .on('mouseleave', circlebordernothover)
   .call(d3.drag()
@@ -68,6 +68,8 @@ function squareclicked() {
 // enable random color of circle and square based on circle click
 function circleddoubleclicked() {
 
+
+  
   let random = Math.floor(Math.random() * 10)
   let random1 = Math.floor(Math.random() * 11)
   circle.attr('fill', d3.schemeCategory10[random]);
@@ -95,7 +97,7 @@ function rectbordernothover(){
   rect.attr('stroke', circle.color)
 }
 
-// drag the circle -- only different from rect because of cy and cx instead of x and y and bring it forward
+// drag the circle -- only different from rect because of cy and cx instead of x and y and bring it forwardc
 function draggedcirc(event, d) {
   d3.select(this).attr('cx', event.x).attr('cy', event.y).raise();
 }
