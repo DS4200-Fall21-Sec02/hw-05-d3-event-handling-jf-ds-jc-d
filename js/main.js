@@ -27,7 +27,9 @@ let rect = svg.append('rect')
   .attr('width', '20%')
   .attr('height', '20%')
   .attr('fill', '#a6cee3')
-  .on('click', squareclicked);
+  .on('click', squareclicked)
+  .on('mouseover', rectborderhover)
+  .on('mouseleave', rectbordernothover);
 
 // Add a circle 
 let circle = svg.append('circle') 
@@ -36,7 +38,9 @@ let circle = svg.append('circle')
   .attr('r', '60')
   .attr('fill', '#b2df8a')
   .on('click', circleclicked)
-  .on('dblclick', circleddoubleclicked);
+  .on('dblclick', circleddoubleclicked)
+  .on('mouseover', circleborderhover)
+  .on('mouseleave', circlebordernothover);
 
 // enable random color of square based on circle click
 function circleclicked() {
@@ -63,6 +67,27 @@ function circleddoubleclicked() {
   rect.attr('fill', d3.schemeCategory10[random1]);
 
 }
+
+// enable black border around circle when mouse hovers over
+function circleborderhover(){
+  circle.attr('stroke', 'black')
+}
+
+// disable black border around circle when mouse leaves
+function circlebordernothover(){
+  circle.attr('stroke', circle.color)
+}
+
+// enable black border around rect when mouse hovers over
+function rectborderhover(){
+  rect.attr('stroke', 'black')
+}
+
+// disable black border around rect when mouse hovers over
+function rectbordernothover(){
+  rect.attr('stroke', circle.color)
+}
+
 
 
 
